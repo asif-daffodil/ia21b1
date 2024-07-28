@@ -60,4 +60,18 @@
 
     myFunc(10);
 
+    $num = 10;
+    function myFunc2 (&$value): void {
+        $value += 10;
+    }
+    myFunc2($num);
+    echo $num."<br>";
+
+    function myFunc3 ($firstNum, $secondNum, ...$nums) {
+        echo "<pre>";
+        print_r($nums);
+        echo "</pre>";
+    }
+
+    myFunc3(10, 20, 30, 40, 50);
 ?>
