@@ -1,4 +1,5 @@
 <?php  
+    namespace student1;
     class studentInfo {
         public $name1 = "Shamima Afroz";
         protected $name2 = "Nil Kumar";
