@@ -10,19 +10,31 @@
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="#">Contact</a>
         </li>
+        <?php if(isset($_SESSION['user'])){ ?>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            User
+            <?= isset($_SESSION['user']) ? explode(' ', $_SESSION['user']['name'])[0] : "Unknown User" ?>
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#">Update Profile</a></li>
             <li><a class="dropdown-item" href="#">Change Password</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Logout</a></li>
+            <li><a class="dropdown-item" href="./logout.php">Logout</a></li>
           </ul>
         </li>
+        <?php }else{ ?>
+          <li class="nav-item">
+            <a class="nav-link" href="./login.php">Log in</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./register.php">Register</a>
+          </li>
+        <?php } ?>
       </ul>
       <form action="" method="post">
         <div class="input-group">
