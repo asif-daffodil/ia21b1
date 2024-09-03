@@ -1,13 +1,13 @@
 <?php  
     require_once 'header.php';
-    if(isset($_SESSION['user'])){
+    if(isset($_SESSION['user']) && $_SESSION['user']['token'] = "ia21b1"){
         header('location: ./');
     }
     if(isset($_POST['signUp'])){
-        $yourName = $_POST['yourName'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-        $confirmPassword = $_POST['confirmPassword'];
+        $yourName = $conn->real_escape_string(safeData($_POST['yourName']));
+        $email = $conn->real_escape_string(safeData($_POST['email']));
+        $password = $conn->real_escape_string(safeData($_POST['password']));
+        $confirmPassword = $conn->real_escape_string(safeData($_POST['confirmPassword']));
         if($password == $confirmPassword){
             $password = password_hash($password, PASSWORD_BCRYPT);
             $sql = "INSERT INTO `users` (`name`, `email`, `password`) VALUES ('$yourName', '$email', '$password')";
@@ -43,12 +43,33 @@
                         <input type="password" name="confirmPassword" class="form-control">
                     </div>
                     <div class="mb-3">
+                        <input type="checkbox" id="showPassword" class="form-check-input">
+                        <label for="showPassword" class="form-check-label">Show Password</label>
+                    </div>
+                    <div class="mb-3">
                         <button type="submit" class="btn btn-primary" name="signUp">Sign Up</button>
                     </div>
                 </form>
+                <!-- login link -->
+                <small>Already have an account? <a href="./login.php" class="">Log in</a></small>
             </div>
         </div>
     </div>
+    <script>
+        const showPassword = document.querySelector('#showPassword');
+        const password = document.querySelector('input[name="password"]');
+        const confirmPassword = document.querySelector('input[name="confirmPassword"]');
+
+        showPassword.addEventListener('click', () => {
+            if(showPassword.checked){
+                password.type = "text";
+                confirmPassword.type = "text";
+            }else{
+                password.type = "password";
+                confirmPassword.type = "password";
+            }
+        });
+    </script>
 <?php  
     require_once 'footer.php';
 ?>

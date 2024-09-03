@@ -1,6 +1,12 @@
 <?php
 session_start();
 $conn = mysqli_connect('localhost', 'root', '', 'ecommerce-1');
+function safeData ($data){
+  $data = htmlspecialchars($data);
+  $data = stripcslashes($data);
+  $data = trim($data);
+  return $data;
+}
 ?>
 <!doctype html>
 <html lang="en">
