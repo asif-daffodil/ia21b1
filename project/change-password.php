@@ -10,6 +10,8 @@
         $confirmPassword = $conn->real_escape_string(safeData($_POST['confirmPassword']));
         if($newPassword != $confirmPassword){
             echo "<script>toastr.error('password did not matched')</script>";
+        }elseif($oldPassword == $newPassword){
+            echo "<script>toastr.error('old password and new password should not be same')</script>";
         }else{
             $sql = "SELECT * FROM `users` WHERE `id` = ".$_SESSION['user']['id'];
             $result = $conn->query($sql);
