@@ -8,16 +8,26 @@
         $email = $conn->real_escape_string(safeData($_POST['email']));
         $password = $conn->real_escape_string(safeData($_POST['password']));
         $confirmPassword = $conn->real_escape_string(safeData($_POST['confirmPassword']));
-        if($password == $confirmPassword){
-            $password = password_hash($password, PASSWORD_BCRYPT);
-            $sql = "INSERT INTO `users` (`name`, `email`, `password`) VALUES ('$yourName', '$email', '$password')";
-            if($conn->query($sql) === TRUE){
-                echo "<script>toastr.success('user registered successfully'); setTimeout(()=>{location.href='./login.php'}, 2000)</script>";
-            }else{
-                echo "<script>toastr.error('Something went wrong')</script>";
-            }
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            echo "<script>toastr.error('invalid email')</script>";
         }else{
-            echo "<script>toastr.error('password did not matched')</script>";
+            $sql = "SELECT * FROM `users` WHERE `email` = '$email'";
+            $result = $conn->query($sql);
+            if($result->num_rows > 0){
+                echo "<script>toastr.error('email already exists')</script>";
+            }else{
+                if($password == $confirmPassword){
+                    $password = password_hash($password, PASSWORD_BCRYPT);
+                    $sql = "INSERT INTO `users` (`name`, `email`, `password`) VALUES ('$yourName', '$email', '$password')";
+                    if($conn->query($sql) === TRUE){
+                        echo "<script>toastr.success('user registered successfully'); setTimeout(()=>{location.href='./login.php'}, 2000)</script>";
+                    }else{
+                        echo "<script>toastr.error('Something went wrong')</script>";
+                    }
+                }else{
+                    echo "<script>toastr.error('password did not matched')</script>";
+                }
+            }
         }
     }
 ?>

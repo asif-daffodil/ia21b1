@@ -49,6 +49,8 @@
                 </form>
                 <!-- register link -->
                 <small>Don't have an account? <a href="./register.php" class="">Register</a></small>
+                <br>
+                <small><a href="./forget-password.php" class="text-danger">Forget password?</a></small>
             </div>
         </div>
     </div>
