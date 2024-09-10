@@ -24,6 +24,17 @@ if (isset($_POST['updateProfile'])) {
                 echo "<script>toastr.error('something went wrong')</script>";
             }
         }
+    }else{
+            $address = $conn->real_escape_string(safeData($_POST['address']));
+            $sql = "UPDATE `users` SET `name` = '$name', `email` = '$email', `address` = '$address' WHERE `id` = " . $_SESSION['user']['id'];
+            if ($conn->query($sql)) {
+                $_SESSION['user']['name'] = $name;
+                $_SESSION['user']['email'] = $email;
+                $_SESSION['user']['address'] = $address;
+                echo "<script>toastr.success('profile updated successfully')</script>";
+            } else {
+                echo "<script>toastr.error('something went wrong')</script>";
+            }
     }
 }
 ?>

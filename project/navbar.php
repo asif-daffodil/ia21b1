@@ -25,6 +25,9 @@
             <li><a class="dropdown-item" href="./update-profile.php">Update Profile</a></li>
             <li><a class="dropdown-item" href="./change-password.php">Change Password</a></li>
             <li><a class="dropdown-item" href="./profile-picture.php">Profile Picture</a></li>
+            <?php if($_SESSION['user']['role'] == "admin"){ ?>
+              <li><a class="dropdown-item" href="./admin">Admin Panel</a></li>
+            <?php } ?>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="./logout.php">Logout</a></li>
           </ul>

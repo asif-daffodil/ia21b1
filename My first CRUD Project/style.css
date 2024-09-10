@@ -1,0 +1,272 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #D071F9;
+    padding: 0 10px;
+}
+
+.container {
+    height: 850px;
+    width: 700px;
+
+    background-color: white;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 10px 10px 2px rgba(0, 0, 0, 0.5);
+}
+
+.container .title {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #4CAF50;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.container .form {
+    width: 100%;
+}
+
+.container .form .input_field {
+    /* margin-bottom: 13px; */
+    display: flex;
+    align-items: center;
+    padding: 6px 0;
+
+}
+
+.container .form .radio_group {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.container .form .wrap {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.container .form .input_field label,
+.container .form .radio_group .department,
+.container .form .wrap .hobbie,
+.container .form .radio_group .gender {
+    width: 170px;
+    margin-right: 30px;
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+/* .container .form .radio_group .department 
+{
+    width:170px;
+    margin-right: 30px; 
+   margin-left: 20px;
+   font-size: 20px;
+   
+}
+.container .form .wrap .hobbie
+{
+    width:170px;
+    margin-right: 30px; 
+   margin-left: 20px;
+   font-size: 20px;
+   
+}
+.container .form .radio_group .gender
+{
+    width:170px;
+ margin-right: 30px; 
+margin-left: 20px;
+font-size: 20px;
+} */
+.container .form .input_field .input {
+    width: 50%;
+    outline: none;
+    border: 1px solid #ccc;
+    font-size: 13px;
+    padding: 6px 8px;
+    border-radius: 3px;
+    transition: all 0.5s ease;
+}
+
+.container .form .input_field .input:focus {
+    border: 1px solid #45a049;
+}
+
+/* Hide the original radio inputs */
+input[type="radio"] {
+    display: none;
+}
+
+/* Custom styling for the label that acts as a radio button */
+.custom-radio {
+    display: inline-block;
+    padding: 5px 8px;
+    margin-right: 10px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Change the style when the radio input is checked */
+input[type="radio"]:checked+.custom-radio {
+    background-color: #4CAF50;
+    color: white;
+    border-color: #4CAF50;
+}
+
+/* Hide the original checkbox inputs */
+input[type="checkbox"] {
+    display: none;
+}
+
+/* Custom styling for the label that acts like a checkbox */
+.custom-checkbox {
+    display: inline-block;
+    padding: 5px 8px;
+    margin-right: 10px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    transition: background-color 0.3s, border-color 0.3s;
+    position: relative;
+    padding-left: 30px;
+}
+
+/* Add a pseudo-element for the custom checkbox appearance */
+.custom-checkbox::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border: 1px solid #ccc;
+    border-radius: 1px;
+    background-color: white;
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Change the style when the checkbox input is checked */
+input[type="checkbox"]:checked+.custom-checkbox::before {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+}
+
+/* Change the style of the label when the checkbox input is checked */
+input[type="checkbox"]:checked+.custom-checkbox {
+    color: white;
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+}
+
+/* Container styling for the input field */
+
+/* Label styling */
+.input_field label {
+    display: block;
+    /* Makes the label appear above the select box */
+    margin-bottom: 5px;
+    /* Adds space between the label and the select box */
+    /* font-weight: bold;  Makes the label text bold */
+    color: #333;
+    /* Darker color for better contrast */
+}
+
+/* Select box styling */
+.input_field select {
+    width: 50%;
+    /* Makes the dropdown full width */
+    padding: 6px;
+    /* Adds padding inside the select box */
+    border: 1px solid #ccc;
+    /* Light grey border */
+    border-radius: 4px;
+    /* Rounded corners */
+    background-color: #f9f9f9;
+    /* Light grey background */
+    font-size: 13px;
+    /* Sets font size */
+    color: #333;
+    /* Text color */
+    cursor: pointer;
+    /* Changes the cursor to a pointer on hover */
+    transition: border-color 0.3s, box-shadow 0.3s;
+    /* Smooth transition on focus */
+}
+
+/* Select box hover effect */
+.input_field select:hover {
+    border-color: #999;
+    /* Darkens the border on hover */
+}
+
+/* Select box focus effect */
+.input_field select:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    outline: none;
+}
+
+/* Styling for the submit button */
+.btn {
+    width: 60%;
+    display: inline-block;
+    /* Makes the button display inline */
+    padding: 10px 20px;
+    /* Adds padding for a comfortable click area */
+    font-size: 16px;
+    /* Sets font size */
+    font-weight: bold;
+    /* Makes the text bold */
+    color: #fff;
+    /* White text color */
+    background-color: #4CAF50;
+    /* Green background color */
+    border: none;
+    /* Removes the default border */
+    border-radius: 4px;
+    /* Rounded corners */
+    cursor: pointer;
+    /* Changes the cursor to a pointer on hover */
+    transition: background-color 0.3s, box-shadow 0.3s;
+    /* Adds smooth transitions */
+}
+
+/* Hover effect for the button */
+.btn:hover {
+    background-color: #45a049;
+    /* Darker green on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Adds shadow on hover */
+}
+
+/* Focus effect for the button */
+.btn:focus {
+    outline: none;
+    /* Removes default outline on focus */
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    /* Adds a glow on focus */
+}
+
+.button {
+    text-align: center;
+    /* Centers child elements like the button */
+    margin-top: 40px;
+}
+
+.error {
+    color: red;
+    font-size: 15px;
+    margin-left: 220px;
+}
