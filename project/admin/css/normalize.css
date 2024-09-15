@@ -90,6 +90,10 @@ a {
   background-color: transparent;
 }
 
+input[type="text"], input[type="password"] {
+  color: #fff;
+}
+
 /**
  * Improve readability of focused elements when they are also in an
  * active/hover state.

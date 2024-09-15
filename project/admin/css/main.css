@@ -91,6 +91,10 @@ textarea {
     padding: 0.2em 0;
 }
 
+input[type="text"], input[type="password"], textarea {
+    color: #fff !important;
+  }
+
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
