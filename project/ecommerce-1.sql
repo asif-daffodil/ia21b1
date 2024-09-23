@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 23, 2024 at 09:39 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Generation Time: Sep 23, 2024 at 09:20 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -42,7 +42,12 @@ INSERT INTO `brands` (`id`, `name`) VALUES
 (3, 'Bata'),
 (4, 'TVS'),
 (5, 'Arong'),
-(6, 'BMW');
+(6, 'BMW'),
+(7, 'samsung'),
+(8, 'Dell'),
+(9, 'Asus'),
+(10, 'HP'),
+(11, 'Acer');
 
 -- --------------------------------------------------------
 
@@ -72,7 +77,8 @@ INSERT INTO `categories` (`id`, `name`) VALUES
 (17, 'Shoes'),
 (19, 'Cosco shaban'),
 (23, 'Md Yunus'),
-(24, 'Car');
+(24, 'Car'),
+(25, 'furniture');
 
 -- --------------------------------------------------------
 
@@ -113,7 +119,18 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `regular_price`, `discount_price`, `image`, `short_description`, `category_id`, `brand_id`, `created_at`) VALUES
-(1, '3 Piece', 5000, 2500, '1727077083_1HKE_20240313152116.jpg', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n', 1, 5, '2024-09-23 07:38:03');
+(1, '3 Piece', 5000, 2500, '1727077083_1HKE_20240313152116.jpg', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n', 1, 5, '2024-09-23 07:38:03'),
+(2, 'i phone 16 pro max', 20000, 19000, '1727117584_iphone.jpg', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n', 2, 1, '2024-09-23 18:53:04'),
+(3, 'samsung galaxy s24 ultra', 100900, 100000, '1727117715_Galaxy-S24-Ultra-Titanium-Black-1587.jpg', '<p>Short Description<strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n', 2, 7, '2024-09-23 18:55:15'),
+(4, 'Dell XPS 13', 50000, 45000, '1727117949_images.jpg', '<p>Short Description<strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n', 2, 8, '2024-09-23 18:59:09'),
+(5, 'MacBook Air', 20000, 195000, '1727118057_images (1).jpg', '<p>Short Description<strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n', 2, 1, '2024-09-23 19:00:57'),
+(6, ' Apple Watch', 200000, 150000, '1727118160_Alpine-Loop-Indigo-2805.png', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n', 2, 1, '2024-09-23 19:02:40'),
+(7, 'Fitbit Versa 2', 51000, 45000, '1727118285_7c954a16-dd7b-4d85-9baa-c8740f6a5566._CR0,0,600,450_PT0_SX600__.jpg', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n', 2, 1, '2024-09-23 19:04:45'),
+(8, 'Asus Viovobook M533ia', 70000, 65000, '1727118386_ASUS-VivoBook-S15-M533-600x600-1.jpg', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n', 2, 9, '2024-09-23 19:06:26'),
+(9, 'Omen 16 GTX 1650ti', 100000, 50000, '1727118559_b8a1961795c33728e6b1e344193f3601-hi.jpg', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n', 2, 10, '2024-09-23 19:09:19'),
+(10, 'The Boys T shirt', 400, 300, '1727118710_images (2).jpg', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n', 1, 5, '2024-09-23 19:11:50'),
+(11, 'Modern Sofa Sets', 50000, 30000, '1727118881_hq720.jpg', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n', 25, 5, '2024-09-23 19:14:41'),
+(12, 'Suzuki gixxer SF', 500000, 450000, '1727119175_images (3).jpg', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n', 4, 4, '2024-09-23 19:19:35');
 
 -- --------------------------------------------------------
 
@@ -140,7 +157,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `image`, `address`, `role`, `token`, `created_at`) VALUES
 (2, 'Mehedi Akter', 'mehedi@akter.com', '$2y$10$0YORRN015x4Pmt2/zBpK6OsD31sYOj1LRt1X..ps/8JlDhy50UixC', '', '', 'user', '', '2024-09-02 07:21:11'),
 (4, 'Rittik Kumar', 'rittik@kumar.com', '$2y$10$Yd5VJITJBgB31mREjnK1y.lO4D1pswruX9kOTtMw8h8BGznUnnArC', '', '', 'user', '', '2024-09-03 05:10:39'),
-(7, 'Asif Abir', 'asif@dti.ac', '$2y$10$SH9jrjpgon7J20Ao//iE/.mRe/AnNvbRhBhU21goKlpkkv/jZ5J0.', '66dd4f943eb106.48224875.jpg', 'Dhaka', 'admin', '', '2024-09-08 06:49:43');
+(7, 'Asif Abir', 'asif@dti.ac', '$2y$10$SH9jrjpgon7J20Ao//iE/.mRe/AnNvbRhBhU21goKlpkkv/jZ5J0.', '66dd4f943eb106.48224875.jpg', 'Dhaka', 'admin', '', '2024-09-08 06:49:43'),
+(8, 'sourov', 'sourovsarker-21ia@dipti.com.bd', '$2y$10$v./iu8ZwfzI4nNaZkUUChO/nFWDCdFXqIm2O4BZxqKScMnSsRAVka', '', '', 'admin', '', '2024-09-23 18:47:32');
 
 --
 -- Indexes for dumped tables
@@ -188,13 +206,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -206,13 +224,13 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
