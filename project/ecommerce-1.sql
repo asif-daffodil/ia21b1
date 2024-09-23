@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 15, 2024 at 09:25 AM
+-- Generation Time: Sep 23, 2024 at 09:39 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -41,7 +41,8 @@ INSERT INTO `brands` (`id`, `name`) VALUES
 (2, 'Walton'),
 (3, 'Bata'),
 (4, 'TVS'),
-(5, 'Arong');
+(5, 'Arong'),
+(6, 'BMW');
 
 -- --------------------------------------------------------
 
@@ -62,7 +63,16 @@ INSERT INTO `categories` (`id`, `name`) VALUES
 (1, 'Cloths'),
 (2, 'Electronics'),
 (3, 'Toy'),
-(4, 'Motor Bike');
+(4, 'Motor Bike'),
+(11, 'Cold Drinks'),
+(12, 'Coffee'),
+(13, 'Chocolate Cake'),
+(15, 'Fast Food'),
+(16, 'Kacchi'),
+(17, 'Shoes'),
+(19, 'Cosco shaban'),
+(23, 'Md Yunus'),
+(24, 'Car');
 
 -- --------------------------------------------------------
 
@@ -97,6 +107,13 @@ CREATE TABLE `products` (
   `brand_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `regular_price`, `discount_price`, `image`, `short_description`, `category_id`, `brand_id`, `created_at`) VALUES
+(1, '3 Piece', 5000, 2500, '1727077083_1HKE_20240313152116.jpg', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n', 1, 5, '2024-09-23 07:38:03');
 
 -- --------------------------------------------------------
 
@@ -171,13 +188,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -189,7 +206,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
