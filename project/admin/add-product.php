@@ -115,7 +115,7 @@ require_once "./header.php";
                 </div>
                 <div class="col-md-4 text-center">
                     <label for="image">
-                        <img src="../assets/images/image_thumbnail.png" alt="" class="img-fluid" style="width:200px; height:200px; object-fit:cover; margin-bottom: 20px;">
+                        <img src="../assets/images/image_thumbnail.png" alt="" class="img-fluid" style="width:200px; height:200px; object-fit:cover; margin-bottom: 20px;" id="showImage">
                         <h4>Featured Image</h4>
                         <input type="file" name="image" id="image" style="display: none;">
                     </label>
@@ -130,6 +130,21 @@ require_once "./header.php";
 
 <script>
     CKEDITOR.replace('example');
+</script>
+<script>
+    const image = document.querySelector('#image');
+    const showImage = document.querySelector('#showImage');
+
+    image.addEventListener('change', () => {
+        const file = image.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                showImage.setAttribute('src', reader.result);
+            }
+            reader.readAsDataURL(file);
+        }
+    });
 </script>
 
 <?php require_once "./footer.php" ?>
