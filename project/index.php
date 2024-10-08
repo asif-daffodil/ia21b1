@@ -27,7 +27,7 @@
                 <div class="card shadow">
                     <img src="./assets/images/products/<?php echo $row['image']; ?>" class="card-img-top p-2" alt="..." style="height: 180px; object-fit: contain">
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $row['name']; ?></h5>
+                        <h5 class="card-title" style="display: inline-block; max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><?php echo $row['name']; ?></h5>
                         <!-- regular_price and discount_price -->
                         <p>
                             <span class="text-decoration-line-through me-2 text-muted">BDT<?php echo $row['regular_price']; ?></span>
@@ -43,10 +43,48 @@
         </div>
     </div>
     <script>
+        // cartCount
+        // proList
         $(document).ready(function(){
             $('.addCart').click(function(){
                 var pid = $(this).data('pid');
                 toastr.success('Product added to cart');
+                $.post('./ajax/cartBackend.php', {addCart: 123, pid: pid}, function(data){
+                    // response = {"id":"20","name":"President Waterproof Fashionable Backpack Nylon Black PBL810","regular_price":"2000","discount_price":"1690","image":"1727722537_Bag.jpg","short_description":"<p><strong>Lorem Ipsum<\/strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.<\/p>\r\n","category_id":"34","brand_id":"17","created_at":"2024-10-01 00:55:37"}
+                    // set data into  session storage with count by id
+                    var cart = JSON.parse(sessionStorage.getItem('cart'));
+                    if(cart == null){
+                        cart = {};
+                    }
+                    if(cart[pid] == undefined){
+                        cart[pid] = data;
+                        cart[pid].count = 1;
+                    }else{
+                        cart[pid].count++;
+                    }
+                    sessionStorage.setItem('cart', JSON.stringify(cart));
+                    // set cartCount
+                    var count = 0;
+                    for(var key in cart){
+                        count += cart[key].count;
+                    }
+                    $('#cartCount').text(count);
+
+                    // set proList
+                    var proList = $('#proList');
+                    proList.html('');
+                    for(var key in cart){
+                        proList.append(`
+                            <div class="d-flex mb-2">
+                                <img src="./assets/images/products/${cart[key].image}" class="img-fluid" style="height: 50px; object-fit: contain">
+                                <div class="ms-2">
+                                    <p class="mb-0">${cart[key].name}</p>
+                                    <p class="mb-0">BDT${cart[key].discount_price} x ${cart[key].count}</p>
+                                </div>
+                            </div>
+                        `);
+                    }
+                });
             });
         });
     </script>

@@ -55,9 +55,9 @@
     <div class="dropend position-relative">
       <button class="btn btn-primary ms-2" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="fa-solid fa-shopping-cart"></i>
-        <span class="position-absolute start-100 top-0 bg-danger translate-middle rounded-circle small" style="width: 24px; line-height: 24px;">0</span>
+        <span class="position-absolute start-100 top-0 bg-danger translate-middle rounded-circle small" style="width: 24px; line-height: 24px;" id="cartCount">0</span>
       </button>
-      <div class="dropdown-menu position-absolute p-2" style="top: 106%; transform: translateX(-100%)">
+      <div class="dropdown-menu position-absolute p-2" style="top: 106%; transform: translateX(-100%)" id="proList">
         Product List
       </div>
     </div>
