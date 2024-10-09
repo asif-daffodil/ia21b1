@@ -144,4 +144,95 @@
 
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function() {
+        // Function to parse cart items
+        function parseCartItems(cart) {
+            for (var key in cart) {
+                if (typeof cart[key] === 'string') {
+                    cart[key] = JSON.parse(cart[key]);
+                }
+            }
+        }
+
+        // Function to update cart count, product list, and checkout button
+        function updateCartDisplay() {
+            var cart = JSON.parse(sessionStorage.getItem('cart')) || {};
+            parseCartItems(cart);
+
+            var count = Object.values(cart).reduce((sum, item) => sum + item.count, 0);
+            $('#cartCount').text(count);
+
+            var proList = $('#proList').html('');
+            $.each(cart, function(key, item) {
+                proList.append(`
+                    <div class="d-flex align-items-center mb-2 border-bottom py-1">
+                        <img src="./assets/images/products/${item.image}" class="img-fluid" style="height: 50px; object-fit: contain">
+                        <div class="ms-2">
+                            ${item.name}
+                        </div>
+                        <div class="ms-2">
+                            ${item.count} x BDT${item.discount_price}
+                        </div>
+                        <button class="btn btn-danger btn-sm ms-2 deleteProduct" data-pid="${key}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `);
+            });
+
+            // Attach click event to delete buttons
+            $('.deleteProduct').click(function() {
+                var pid = $(this).data('pid');
+                delete cart[pid];
+                sessionStorage.setItem('cart', JSON.stringify(cart));
+                updateCartDisplay(); // Refresh the cart display
+            });
+
+            // Checkout button logic
+            var checkoutBtn = $('#checkoutBtnContainer');
+            if (count > 0) {
+                if (checkoutBtn.length === 0) {
+                    $('#proList').append(`
+                        <div id="checkoutBtnContainer" class="mt-3 text-end">
+                            <button id="checkoutBtn" class="btn btn-success">Proceed to Checkout</button>
+                        </div>
+                    `);
+                }
+            } else {
+                checkoutBtn.remove(); // Remove checkout button if cart is empty
+            }
+        }
+
+        // Initial update on page load
+        updateCartDisplay();
+
+        // On Add to Cart button click
+        $('.addCart').click(function() {
+            var pid = $(this).data('pid');
+            toastr.success('Product added to cart');
+
+            $.post('./ajax/cartBackend.php', { addCart: 123, pid: pid }, function(data) {
+                var cart = JSON.parse(sessionStorage.getItem('cart')) || {};
+                parseCartItems(cart);
+
+                var responseData = typeof data === 'object' ? data : JSON.parse(data);
+
+                if (!cart[pid]) {
+                    cart[pid] = { ...responseData, count: 1 };
+                } else {
+                    cart[pid].count++;
+                }
+
+                sessionStorage.setItem('cart', JSON.stringify(cart));
+                updateCartDisplay();
+            });
+        });
+
+        $('#checkoutBtn').click(function() {
+            window.location.href = './checkout.php';
+        });
+    });
+</script>
+</body>
 </html>

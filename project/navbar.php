@@ -57,7 +57,7 @@
         <i class="fa-solid fa-shopping-cart"></i>
         <span class="position-absolute start-100 top-0 bg-danger translate-middle rounded-circle small" style="width: 24px; line-height: 24px;" id="cartCount">0</span>
       </button>
-      <div class="dropdown-menu position-absolute p-2" style="top: 106%; transform: translateX(-100%)" id="proList">
+      <div class="dropdown-menu position-absolute p-2" style="top: 106%; transform: translateX(-100%); width: max-content; max-width:350px" id="proList">
         Product List
       </div>
     </div>
