@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 30, 2024 at 10:23 PM
+-- Generation Time: Oct 10, 2024 at 06:37 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -114,8 +114,17 @@ CREATE TABLE `orders` (
   `quantity` int(11) NOT NULL,
   `total_price` int(11) NOT NULL,
   `address` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `status` enum('In Progress','Delivered','','') NOT NULL DEFAULT 'In Progress'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `product_id`, `user_id`, `quantity`, `total_price`, `address`, `created_at`, `status`) VALUES
+(3, 5, 7, 1, 2000, 'mohammadpur dhaka', '2024-10-02 14:29:15', 'In Progress'),
+(4, 2, 8, 1, 10000, 'dhaka sobahanbag', '2024-10-02 14:30:24', 'In Progress');
 
 -- --------------------------------------------------------
 
@@ -157,9 +166,8 @@ INSERT INTO `products` (`id`, `name`, `regular_price`, `discount_price`, `image`
 (20, 'President Waterproof Fashionable Backpack Nylon Black PBL810', 2000, 1690, '1727722537_Bag.jpg', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>\r\n', 34, 17, '2024-09-30 18:55:37'),
 (21, 'Xiaomi MIJIA V88', 15000, 9990, '1727722848_EOX.png', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>\r\n', 35, 14, '2024-09-30 19:00:48'),
 (22, 'Cordey CR-NP41 Wooden-Dreadnought Cutaway Acoustic Guitar', 14000, 9800, '1727723246_Guitar.jpg', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>\r\n', 37, 18, '2024-09-30 19:07:26'),
-(23, 'Rode Complete Studio Kit with AI-1 Audio Interface, NT1 Microphone, SM6 Shockmount, and Cables', 41000, 40000, '1727723696_RODE.jpg', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>\r\n', 30, 19, '2024-09-30 19:14:56'),
-(24, 'Kinsman - Hardshell Electric Bass Case', 11000, 9000, '1727724035_JOX.jpg', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>\r\n', 36, 18, '2024-09-30 19:20:35'),
-(25, 'Canon Eos 4000D 18MP 2.7inch Display With 18-55mm Lens Dslr Camera', 44000, 42000, '1727724299_Cox.jpg', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>\r\n', 38, 20, '2024-09-30 19:24:59');
+(23, 'Rode Complete Studio Kit ', 41000, 40000, '1727723696_RODE.jpg', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>\r\n', 30, 19, '2024-09-30 19:14:56'),
+(24, 'Kinsman - Hardshell Electric Bass Case', 11000, 9000, '1727724035_JOX.jpg', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>\r\n', 36, 18, '2024-09-30 19:20:35');
 
 -- --------------------------------------------------------
 
@@ -247,7 +255,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `products`
