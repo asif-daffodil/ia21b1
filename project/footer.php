@@ -2,14 +2,12 @@
 
   <!-- Footer -->
   <footer
-          class="text-center text-lg-start text-white row"
-          style="background-color: #1c2331"
-          >
+    class="text-center text-lg-start text-white row"
+    style="background-color: #1c2331">
     <!-- Section: Social media -->
     <section
-             class="d-flex justify-content-between p-4"
-             style="background-color: #6351ce"
-             >
+      class="d-flex justify-content-between p-4"
+      style="background-color: #6351ce">
       <!-- Left -->
       <div class="me-5">
         <span>Get connected with us on social networks:</span>
@@ -51,9 +49,8 @@
             <!-- Content -->
             <h6 class="text-uppercase fw-bold">Company name</h6>
             <hr
-                class="mb-4 mt-0 d-inline-block mx-auto"
-                style="width: 60px; background-color: #7c4dff; height: 2px"
-                />
+              class="mb-4 mt-0 d-inline-block mx-auto"
+              style="width: 60px; background-color: #7c4dff; height: 2px" />
             <p>
               Here you can use rows and columns to organize your footer
               content. Lorem ipsum dolor sit amet, consectetur adipisicing
@@ -67,9 +64,8 @@
             <!-- Links -->
             <h6 class="text-uppercase fw-bold">Products</h6>
             <hr
-                class="mb-4 mt-0 d-inline-block mx-auto"
-                style="width: 60px; background-color: #7c4dff; height: 2px"
-                />
+              class="mb-4 mt-0 d-inline-block mx-auto"
+              style="width: 60px; background-color: #7c4dff; height: 2px" />
             <p>
               <a href="#!" class="text-white">MDBootstrap</a>
             </p>
@@ -90,9 +86,8 @@
             <!-- Links -->
             <h6 class="text-uppercase fw-bold">Useful links</h6>
             <hr
-                class="mb-4 mt-0 d-inline-block mx-auto"
-                style="width: 60px; background-color: #7c4dff; height: 2px"
-                />
+              class="mb-4 mt-0 d-inline-block mx-auto"
+              style="width: 60px; background-color: #7c4dff; height: 2px" />
             <p>
               <a href="#!" class="text-white">Your Account</a>
             </p>
@@ -113,9 +108,8 @@
             <!-- Links -->
             <h6 class="text-uppercase fw-bold">Contact</h6>
             <hr
-                class="mb-4 mt-0 d-inline-block mx-auto"
-                style="width: 60px; background-color: #7c4dff; height: 2px"
-                />
+              class="mb-4 mt-0 d-inline-block mx-auto"
+              style="width: 60px; background-color: #7c4dff; height: 2px" />
             <p><i class="fas fa-home mr-3"></i> New York, NY 10012, US</p>
             <p><i class="fas fa-envelope mr-3"></i> info@example.com</p>
             <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
@@ -130,13 +124,10 @@
 
     <!-- Copyright -->
     <div
-         class="text-center p-3"
-         style="background-color: rgba(0, 0, 0, 0.2)"
-         >
+      class="text-center p-3"
+      style="background-color: rgba(0, 0, 0, 0.2)">
       © 2020 Copyright:
-      <a class="text-white" href="https://mdbootstrap.com/"
-         >MDBootstrap.com</a
-        >
+      <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
     </div>
     <!-- Copyright -->
   </footer>
@@ -145,27 +136,56 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script>
-    $(document).ready(function() {
-        // Function to parse cart items
-        function parseCartItems(cart) {
-            for (var key in cart) {
-                if (typeof cart[key] === 'string') {
-                    cart[key] = JSON.parse(cart[key]);
-                }
-            }
+  $(document).ready(function() {
+    // Function to parse cart items
+    function parseCartItems(cart) {
+      for (var key in cart) {
+        if (typeof cart[key] === 'string') {
+          cart[key] = JSON.parse(cart[key]);
+        }
+      }
+    }
+
+    // Load Cart Data from sessionStorage
+    const updateCheckoutDisplay = () => {
+            $('#checkoutCartList').empty(); // Clear the current list
+            var cart = JSON.parse(sessionStorage.getItem('cart')) || {};
+
+            // Display cart items in checkout page
+            $.each(cart, function(key, item) {
+                $('#checkoutCartList').append(`
+                <div class="d-flex align-items-center mb-2 border-bottom py-2">
+                    <img src="./assets/images/products/${item.image}" class="img-fluid" style="height: 50px; object-fit: contain">
+                    <div class="ms-3">
+                        <strong>${item.name}</strong>
+                        <p class="mb-0">BDT ${item.discount_price} x ${item.count}</p>
+                    </div>
+                </div>
+            `);
+            });
         }
 
-        // Function to update cart count, product list, and checkout button
-        function updateCartDisplay() {
-            var cart = JSON.parse(sessionStorage.getItem('cart')) || {};
-            parseCartItems(cart);
+        // Initial display
+        updateCheckoutDisplay();
 
-            var count = Object.values(cart).reduce((sum, item) => sum + item.count, 0);
-            $('#cartCount').text(count);
+        // Listen for storage changes to update the cart display
+        window.addEventListener('storage', function(event) {
+            if (event.key === 'cart') {
+                updateCheckoutDisplay(); // Refresh checkout display if cart data changes
+            }
+        });
 
-            var proList = $('#proList').html('');
-            $.each(cart, function(key, item) {
-                proList.append(`
+    // Function to update cart count, product list, and checkout button
+    function updateCartDisplay() {
+      var cart = JSON.parse(sessionStorage.getItem('cart')) || {};
+      parseCartItems(cart);
+
+      var count = Object.values(cart).reduce((sum, item) => sum + item.count, 0);
+      $('#cartCount').text(count);
+
+      var proList = $('#proList').html('');
+      $.each(cart, function(key, item) {
+        proList.append(`
                     <div class="d-flex align-items-center mb-2 border-bottom py-1">
                         <img src="./assets/images/products/${item.image}" class="img-fluid" style="height: 50px; object-fit: contain">
                         <div class="ms-2">
@@ -179,60 +199,72 @@
                         </button>
                     </div>
                 `);
-            });
+      });
 
-            // Attach click event to delete buttons
-            $('.deleteProduct').click(function() {
-                var pid = $(this).data('pid');
-                delete cart[pid];
-                sessionStorage.setItem('cart', JSON.stringify(cart));
-                updateCartDisplay(); // Refresh the cart display
-            });
+      // Attach click event to delete buttons
+      $('.deleteProduct').click(function() {
+        var pid = $(this).data('pid');
+        delete cart[pid]; // Remove the product from the cart
+        sessionStorage.setItem('cart', JSON.stringify(cart)); // Update sessionStorage
+        updateCartDisplay(); // Refresh the cart display
+        typeof updateCheckoutDisplay === "function" && updateCheckoutDisplay();
+        //  if cart is empty, redirect to home page
+        if (Object.keys(cart).length === 0) {
+          window.location.href = './';
+        }
+      });
 
-            // Checkout button logic
-            var checkoutBtn = $('#checkoutBtnContainer');
-            if (count > 0) {
-                if (checkoutBtn.length === 0) {
-                    $('#proList').append(`
+      // Checkout button logic
+      var checkoutBtn = $('#checkoutBtnContainer');
+      if (count > 0) {
+        if (checkoutBtn.length === 0) {
+          $('#proList').append(`
                         <div id="checkoutBtnContainer" class="mt-3 text-end">
                             <button id="checkoutBtn" class="btn btn-success">Proceed to Checkout</button>
                         </div>
                     `);
-                }
-            } else {
-                checkoutBtn.remove(); // Remove checkout button if cart is empty
-            }
+        }
+      } else {
+        checkoutBtn.remove(); // Remove checkout button if cart is empty
+      }
+
+      $('#checkoutBtn').click(function() {
+        window.location.href = './checkout.php';
+      });
+    }
+
+    // Initial update on page load
+    updateCartDisplay();
+
+    // On Add to Cart button click
+    $('.addCart').click(function() {
+      var pid = $(this).data('pid');
+      toastr.success('Product added to cart');
+
+      $.post('./ajax/cartBackend.php', {
+        addCart: 123,
+        pid: pid
+      }, function(data) {
+        var cart = JSON.parse(sessionStorage.getItem('cart')) || {};
+        parseCartItems(cart);
+
+        var responseData = typeof data === 'object' ? data : JSON.parse(data);
+
+        if (!cart[pid]) {
+          cart[pid] = {
+            ...responseData,
+            count: 1
+          };
+        } else {
+          cart[pid].count++;
         }
 
-        // Initial update on page load
+        sessionStorage.setItem('cart', JSON.stringify(cart));
         updateCartDisplay();
-
-        // On Add to Cart button click
-        $('.addCart').click(function() {
-            var pid = $(this).data('pid');
-            toastr.success('Product added to cart');
-
-            $.post('./ajax/cartBackend.php', { addCart: 123, pid: pid }, function(data) {
-                var cart = JSON.parse(sessionStorage.getItem('cart')) || {};
-                parseCartItems(cart);
-
-                var responseData = typeof data === 'object' ? data : JSON.parse(data);
-
-                if (!cart[pid]) {
-                    cart[pid] = { ...responseData, count: 1 };
-                } else {
-                    cart[pid].count++;
-                }
-
-                sessionStorage.setItem('cart', JSON.stringify(cart));
-                updateCartDisplay();
-            });
-        });
-
-        $('#checkoutBtn').click(function() {
-            window.location.href = './checkout.php';
-        });
+      });
     });
+  });
 </script>
 </body>
+
 </html>

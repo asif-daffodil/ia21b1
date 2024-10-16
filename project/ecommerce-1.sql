@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 10, 2024 at 06:37 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Oct 16, 2024 at 07:43 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -115,16 +115,23 @@ CREATE TABLE `orders` (
   `total_price` int(11) NOT NULL,
   `address` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `status` enum('In Progress','Delivered','','') NOT NULL DEFAULT 'In Progress'
+  `status` enum('In Progress','Delivered') NOT NULL DEFAULT 'In Progress',
+  `tid` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `product_id`, `user_id`, `quantity`, `total_price`, `address`, `created_at`, `status`) VALUES
-(3, 5, 7, 1, 2000, 'mohammadpur dhaka', '2024-10-02 14:29:15', 'In Progress'),
-(4, 2, 8, 1, 10000, 'dhaka sobahanbag', '2024-10-02 14:30:24', 'In Progress');
+INSERT INTO `orders` (`id`, `product_id`, `user_id`, `quantity`, `total_price`, `address`, `created_at`, `status`, `tid`) VALUES
+(3, 5, 7, 1, 2000, 'mohammadpur dhaka', '2024-10-02 14:29:15', 'Delivered', '123456789'),
+(4, 2, 8, 1, 10000, 'dhaka sobahanbag', '2024-10-02 14:30:24', 'In Progress', '321654987'),
+(5, 23, 7, 1, 40000, '9 Sher-E-Bangla Road\r\nHazaribagh', '2024-10-16 05:38:29', 'In Progress', '12345678'),
+(6, 24, 7, 2, 18000, '9 Sher-E-Bangla Road\r\nHazaribagh', '2024-10-16 05:38:29', 'In Progress', '12345678'),
+(7, 21, 7, 2, 19980, '9 Sher-E-Bangla Road\r\nHazaribagh', '2024-10-16 05:39:36', 'In Progress', '12345678'),
+(8, 22, 7, 1, 9800, '9 Sher-E-Bangla Road\r\nHazaribagh', '2024-10-16 05:39:36', 'In Progress', '12345678'),
+(9, 23, 7, 1, 40000, '9 Sher-E-Bangla Road\r\nHazaribagh', '2024-10-16 05:42:09', 'In Progress', '456456456'),
+(10, 24, 7, 2, 18000, '9 Sher-E-Bangla Road\r\nHazaribagh', '2024-10-16 05:42:09', 'In Progress', '456456456');
 
 -- --------------------------------------------------------
 
@@ -255,7 +262,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `products`
