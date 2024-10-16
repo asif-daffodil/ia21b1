@@ -69,6 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h2 class="mt-5">Checkout</h2>
 
     <!-- Cart Summary Section -->
+     <?php if(isset($_SESSION['user'])){  ?>
     <div class="row">
         <div class="col-md-8">
             <h4>Your Cart Items</h4>
@@ -112,6 +113,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </form>
         </div>
     </div>
+    <?php }else{ ?>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="alert alert-danger">Please login to place order</div>
+            </div>
+        </div>
+    <?php } ?>
 </div>
 
 <script>
