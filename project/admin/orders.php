@@ -133,14 +133,46 @@ require_once "./header.php";
 
 <script>
     $(document).ready(function() {
+        // Initialize DataTable
         $('#ordersTable').DataTable({
             "lengthMenu": [5, 10, 25, 50]
         });
 
-        // Set the order ID in the delete confirmation modal
-        $('.delete-btn').on('click', function() {
+        // Delegate the delete button event to handle dynamically loaded elements
+        $(document).on('click', '.delete-btn', function() {
             var orderId = $(this).data('order-id');
-            $('#deleteOrderId').val(orderId);
+            $('#deleteOrderId').val(orderId); // Set the order ID in the modal
+        });
+
+        // Handle the form submission for deleting the order
+        $('#deleteModal form').on('submit', function(e) {
+            e.preventDefault();
+            var form = $(this);
+            var orderId = $('#deleteOrderId').val(); // Get the order ID to delete
+
+            // Make the delete request via AJAX to avoid a full page refresh
+            $.ajax({
+                url: '', // Ensure this points to the current PHP file handling the deletion
+                method: 'POST',
+                data: {
+                    delete_order: true,
+                    order_id: orderId
+                },
+                success: function(response) {
+                    // Hide the modal and show a success message using Toastr
+                    $('#deleteModal').modal('hide');
+                    toastr.success('Order deleted successfully');
+
+                    // Add a 2-second timeout before reloading the page
+                    setTimeout(function() {
+                        location.reload(); // Reload the page after 2 seconds
+                    }, 1000); // 2 seconds = 2000 milliseconds
+                },
+                error: function() {
+                    toastr.error('Failed to delete the order');
+                }
+            });
         });
     });
 </script>
+

@@ -22,19 +22,22 @@ require_once 'header.php';
         $sql = "SELECT * FROM products ORDER BY id DESC LIMIT 8";
         $result = mysqli_query($conn, $sql);
         while ($row = mysqli_fetch_assoc($result)) {
+            // Calculate discount percentage
+            $discount_percentage = 100 - ($row['discount_price'] / $row['regular_price']) * 100;
         ?>
             <div class="col-md-3 p-2">
                 <div class="card shadow">
                     <img src="./assets/images/products/<?php echo $row['image']; ?>" class="card-img-top p-2" alt="..." style="height: 180px; object-fit: contain">
                     <div class="card-body">
                         <h5 class="card-title" style="display: inline-block; max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><?php echo $row['name']; ?></h5>
-                        <!-- regular_price and discount_price -->
+                        <!-- regular_price, discount_price, and discount_percentage -->
                         <p>
                             <span class="text-decoration-line-through me-2 text-muted">BDT<?php echo $row['regular_price']; ?></span>
                             <span class="text-danger">BDT<?php echo $row['discount_price']; ?></span>
+                            <span class="badge bg-danger ms-2"><?php echo round($discount_percentage); ?>% OFF</span>
                         </p>
                         <!-- add to cart & view button with fontawesome icon -->
-                        <a href="product.php?id=<?php echo $row['id']; ?>" class="btn btn-primary btn-sm">View <i class="fas fa-eye"></i></a>
+                        <a href="single-product.php?id=<?php echo $row['id']; ?>" class="btn btn-primary btn-sm">View <i class="fas fa-eye"></i></a>
                         <button class="btn btn-success btn-sm addCart" data-pid="<?= $row['id']; ?>">Add to cart <i class="fas fa-shopping-cart"></i></button>
                     </div>
                 </div>
@@ -42,7 +45,6 @@ require_once 'header.php';
         <?php } ?>
     </div>
 </div>
-
 
 <?php
 require_once 'footer.php';
