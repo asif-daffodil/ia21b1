@@ -10,8 +10,8 @@ if (isset($_SESSION['user'])) {
     $query = "SELECT o.product_id, o.quantity, o.total_price, o.address, o.created_at, o.status, p.name AS product_name 
               FROM orders o 
               JOIN products p ON o.product_id = p.id 
-              WHERE o.user_id = ?";
-              
+              WHERE o.user_id = ? ORDER BY o.created_at DESC";
+
     $stmt = $conn->prepare($query);
 
     if ($stmt) {
@@ -32,46 +32,43 @@ if (isset($_SESSION['user'])) {
 
 ?>
 <style>
-  /* Custom styles for the orders modal */
-#ordersModal .modal-content {
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
-}
+    /* Custom styles for the orders modal */
+    #ordersModal .modal-content {
+        border-radius: 10px;
+        /* Rounded corners */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        /* Soft shadow */
+    }
 
-#ordersModal .modal-header {
-    background-color: #007bff; /* Bootstrap primary color */
-    color: #fff; /* White text */
-    border-top-left-radius: 10px; /* Match border radius */
-    border-top-right-radius: 10px; /* Match border radius */
-}
+    #ordersModal .modal-header {
+        background-color: #007bff;
+        /* Bootstrap primary color */
+        color: #fff;
+        /* White text */
+        border-top-left-radius: 10px;
+        /* Match border radius */
+        border-top-right-radius: 10px;
+        /* Match border radius */
+    }
 
-#ordersModal .modal-body {
-    background-color: #f8f9fa; /* Light background for body */
-}
+    #ordersModal .modal-body {
+        background-color: #f8f9fa;
+        /* Light background for body */
+    }
 
-#ordersModal table {
-    margin-bottom: 0; /* Remove margin */
-}
+    #ordersModal .btn-secondary {
+        background-color: #6c757d;
+        /* Bootstrap secondary color */
+        border: none;
+        /* Remove border */
+        transition: background-color 0.3s;
+        /* Smooth transition */
+    }
 
-#ordersModal th {
-    background-color: #e9ecef; /* Light gray for headers */
-    text-align: center; /* Center header text */
-}
-
-#ordersModal td {
-    text-align: center; /* Center content */
-}
-
-#ordersModal .btn-secondary {
-    background-color: #6c757d; /* Bootstrap secondary color */
-    border: none; /* Remove border */
-    transition: background-color 0.3s; /* Smooth transition */
-}
-
-#ordersModal .btn-secondary:hover {
-    background-color: #5a6268; /* Darker shade on hover */
-}
-
+    #ordersModal .btn-secondary:hover {
+        background-color: #5a6268;
+        /* Darker shade on hover */
+    }
 </style>
 
 
@@ -152,7 +149,7 @@ if (isset($_SESSION['user'])) {
             </div>
             <div class="modal-body">
                 <?php if (!empty($orders)) { ?>
-                    <table class="table table-bordered">
+                    <table class="table display" id="userOrderTable">
                         <thead>
                             <tr>
                                 <th>Product Name</th>
@@ -186,3 +183,11 @@ if (isset($_SESSION['user'])) {
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('#userOrderTable').DataTable({
+            "lengthMenu": [5, 10, 25, 50]
+        });
+    });
+</script>

@@ -84,9 +84,9 @@ if (!file_exists($image_path)) {
                     </div>
 
                     <!-- Add to Cart Button with Font Awesome Icon -->
-                    <a href="#" class="btn btn-gradient btn-lg btn-block mt-4">
+                    <a href="javascript:void(0)" class="btn btn-gradient btn-lg btn-block mt-4 addCart" data-pid="<?= $product['id']; ?>>
                         <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
-                    </a>
+                    </>
                     
                     <!-- Back Button -->
                     <a href="javascript:history.back()" class="btn btn-gradient-back btn-lg btn-block mt-3">
